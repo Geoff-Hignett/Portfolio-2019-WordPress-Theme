@@ -2,11 +2,11 @@
 
 <main>
 
- <!-- INFO -->
-    <?php $hero = get_field('hero'); 
-          $main_title = $hero['main_title'];
-          $sub_title = $hero['sub_title'];
-          $link_text = $hero['link_text'];
+    <!-- INFO -->
+    <?php $hero = get_field('hero');
+    $main_title = $hero['main_title'];
+    $sub_title = $hero['sub_title'];
+    $link_text = $hero['link_text'];
     ?>
 
     <div class="header__info-box">
@@ -18,9 +18,9 @@
     </div>
 
     <!-- PORTFOLIO -->
-    <?php $portfolio = get_field('portfolio'); 
-          $portfolio_header = $portfolio['portfolio_header'];
-          $portfolio_text = $portfolio['portfolio_text'];
+    <?php $portfolio = get_field('portfolio');
+    $portfolio_header = $portfolio['portfolio_header'];
+    $portfolio_text = $portfolio['portfolio_text'];
     ?>
 
     <section class="portfolio" id="portfolio">
@@ -31,181 +31,54 @@
             </div>
         </header>
 
-        <div class="portfolio__content container">
+        <?php if (have_rows('example')) : ?>
 
-        <?php 
+        <?php while (have_rows('example')) : the_row(); ?>
 
-          if( have_rows('example') ):
-
-            while( have_rows('example') ): the_row();
-
-                //vars
-                $example_header = get_sub_field('example_header'); 
+        <?php //vars
+                $example_header = get_sub_field('example_link');
                 $example_text = get_sub_field('example_text');
-                $example_image = get_sub_field('example_image');
-        ?>
+                $example_link_text = get_sub_field('example_link_text');
+                $image = get_sub_field('example_image');
 
-            <div class="portfolio__item">
-                <div class="portfolio__info">
-                    <a href="https://experiencep2p.co.uk" class="portfolio__head-link" target="_blank">
-                        <h3 class="heading-tertiary mb-3">EXPERIENCE P2P</h3>
-                    </a>
-                    <p class="portfolio__description mb-1">
-                        Experience P2P is a multi-page alternative investment site. It
-                        was the first site I built using Bootstrap 4. I focussed on
-                        making a clean, informative website and got a good grounding of
-                        how to use classes to create a responsive design.
-                    </p>
-                    <div class="portfolio__skills-container mb-6">
-                        <div class="portfolio__skill">HTML5</div>
-                        <div class="portfolio__skill">CSS3</div>
-                        <div class="portfolio__skill">Bootstrap 4</div>
-                    </div>
-                </div>
-                <div class="portfolio__img-container">
-                    <a href="https://experiencep2p.co.uk" class="portfolio__img-link" target="_blank">
-                        <img src="<?php bloginfo('template_directory') ?>/img/p2p.jpg" alt="Experience P2P website" class="portfolio__img" />
-                    </a>
-                </div>
-            </div>
-        </div>
-        <hr class="portfolio__divider" />
+                ?>
+
         <div class="portfolio__content container">
             <div class="portfolio__item">
                 <div class="portfolio__info">
-                    <a href="https://10britishquestions.co.uk" class="portfolio__head-link" target="_blank">
-                        <h3 class="heading-tertiary mb-3">10 British Questions</h3>
+
+                    <a href="<?php echo $example_header; ?>" class="portfolio__head-link" target="_blank">
+                        <h3 class="heading-tertiary mb-3"><?php the_sub_field('example_link_text'); ?></h3>
                     </a>
-                    <p class="portfolio__description mb-1">
-                        10 British Questions is a random quiz app. It is rendered almost
-                        entirely using JavaScript/jQuery with almost no HTML. This was a
-                        great opportunity for practising DOM manipulation as well as
-                        working with data structures and logic in JavaScript.
-                    </p>
+                    <p class="portfolio__description mb-1"><?php the_sub_field('example_text'); ?></p>
                     <div class="portfolio__skills-container mb-6">
-                        <div class="portfolio__skill">HTML5</div>
-                        <div class="portfolio__skill">CSS3</div>
-                        <div class="portfolio__skill">JavaScript</div>
-                        <div class="portfolio__skill">jQuery</div>
+
+                        <?php if (have_rows('example_skills')) : ?>
+
+                        <?php while (have_rows('example_skills')) : the_row(); ?>
+
+                        <div class="portfolio__skill"><?php the_sub_field('example_skill'); ?></div>
+
+                        <?php endwhile; ?>
+
+                        <?php endif; ?>
+
                     </div>
                 </div>
                 <div class="portfolio__img-container">
-                    <a href="https://10britishquestions.co.uk" class="portfolio__img-link" target="_blank">
-                        <img src="<?php bloginfo('template_directory') ?>/img/british.jpg" alt="10 British Questions website" class="portfolio__img" />
+                    <a href="<?php the_sub_field('example_link_2'); ?>" class="portfolio__img-link" target="_blank">
+                        <?php if (!empty($image)) : ?>
+                        <img class="portfolio__img" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                        <?php endif; ?>
                     </a>
                 </div>
             </div>
         </div>
         <hr class="portfolio__divider" />
-        <div class="portfolio__content container">
-            <div class="portfolio__item">
-                <div class="portfolio__info">
-                    <a href="https://geoff-hignett.co.uk/riff-world" class="portfolio__head-link" target="_blank">
-                        <h3 class="heading-tertiary mb-3">Riff World</h3>
-                    </a>
-                    <p class="portfolio__description mb-1">
-                        Riff World is a landing page for a guitar tuition/events
-                        organisation. I used the Materialize CSS framework for this
-                        project. I also practised jQuery skills to enable the Scrollfire
-                        plugin and Slilder carousel feature.
-                    </p>
-                    <div class="portfolio__skills-container mb-6">
-                        <div class="portfolio__skill">HTML5</div>
-                        <div class="portfolio__skill">CSS3</div>
-                        <div class="portfolio__skill">Bootstrap 4</div>
-                    </div>
-                </div>
-                <div class="portfolio__img-container">
-                    <a href="https://geoff-hignett.co.uk/riff-world" class="portfolio__img-link" target="_blank">
-                        <img src="<?php bloginfo('template_directory') ?>/img/riff.jpg" alt="Riff World website" class="portfolio__img" />
-                    </a>
-                </div>
-            </div>
-        </div>
-        <hr class="portfolio__divider" />
-        <div class="portfolio__content container">
-            <div class="portfolio__item">
-                <div class="portfolio__info">
-                    <a href="https://geoff-hignett.co.uk/typing-training/play.html" class="portfolio__head-link" target="_blank">
-                        <h3 class="heading-tertiary mb-3">Typing Trainer</h3>
-                    </a>
-                    <p class="portfolio__description mb-1">
-                        Typing trainer is a game which tests the typing speed of the
-                        player. After a certain number of points score the difficulty
-                        intensifies. It was a good exercise for practising logic in
-                        JavaScript. After getting the functionality down I used
-                        Bootstrap 4 to help out with styling.
-                    </p>
-                    <div class="portfolio__skills-container mb-6">
-                        <div class="portfolio__skill">HTML5</div>
-                        <div class="portfolio__skill">CSS3</div>
-                        <div class="portfolio__skill">Bootstrap 4</div>
-                        <div class="portfolio__skill">JavaScript</div>
-                    </div>
-                </div>
-                <div class="portfolio__img-container">
-                    <a href="https://geoff-hignett.co.uk/typing-training/play.html" class="portfolio__img-link" target="_blank">
-                        <img src="<?php bloginfo('template_directory') ?>/img/typing.jpg" alt="Typing Trainer website" class="portfolio__img" />
-                    </a>
-                </div>
-            </div>
-        </div>
-        <hr class="portfolio__divider" />
-        <div class="portfolio__content container">
-            <div class="portfolio__item">
-                <div class="portfolio__info">
-                    <a href="https://hignettsrockinghorses.co.uk" class="portfolio__head-link" target="_blank">
-                        <h3 class="heading-tertiary mb-3">Hignett's Rocking Horses</h3>
-                    </a>
-                    <p class="portfolio__description mb-1">
-                        Hignett's Rocking Horses is a historical single-page website
-                        made in Bootstrap 4. Since it is not a commercial site I used a
-                        more traditional style inspired by newspaper styles. It also
-                        makes use of the Scrollspy and SmoothScroll extentions.
-                    </p>
-                    <div class="portfolio__skills-container mb-6">
-                        <div class="portfolio__skill">HTML5</div>
-                        <div class="portfolio__skill">CSS3</div>
-                        <div class="portfolio__skill">Bootstrap 4</div>
-                        <div class="portfolio__skill">JavaScript</div>
-                        <div class="portfolio__skill">jQuery</div>
-                    </div>
-                </div>
-                <div class="portfolio__img-container">
-                    <a href="https://hignettsrockinghorses.co.uk" class="portfolio__img-link" target="_blank">
-                        <img src="<?php bloginfo('template_directory') ?>/img/hignett.jpg" alt="Hignetts Rocking Horses website" class="portfolio__img" />
-                    </a>
-                </div>
-            </div>
-        </div>
-        <hr class="portfolio__divider" />
-        <div class="portfolio__content container">
-            <div class="portfolio__item">
-                <div class="portfolio__info">
-                    <a href="https://codepen.io/geoff-hignett/pen/OZZWdj" class="portfolio__head-link" target="_blank">
-                        <h3 class="heading-tertiary mb-3">Movie Quote Generator</h3>
-                    </a>
-                    <p class="portfolio__description mb-1">
-                        Movie Quote Generator was one of the first apps I made while
-                        working through the freeCodeCamp Front-End programme. It makes
-                        AJAX calls to retrieve the quotes from an API on the Mashape
-                        market.
-                    </p>
-                    <div class="portfolio__skills-container mb-6">
-                        <div class="portfolio__skill">HTML5</div>
-                        <div class="portfolio__skill">CSS3</div>
-                        <div class="portfolio__skill">JavaScript</div>
-                        <div class="portfolio__skill">AJAX</div>
-                    </div>
-                </div>
-                <div class="portfolio__img-container">
-                    <a href="https://codepen.io/geoff-hignett/pen/OZZWdj" class="portfolio__img-link" target="_blank">
-                        <img src="<?php bloginfo('template_directory') ?>/img/movie.jpg" alt="Movie Quote Generator website" class="portfolio__img" />
-                    </a>
-                </div>
-            </div>
-        </div>
-        <hr class="portfolio__divider" />
+        <?php endwhile; ?>
+
+        <?php endif; ?>
+
     </section>
 
     <!-- ABOUT -->
@@ -268,9 +141,9 @@
     </section>
 
     <!-- CONTACT -->
-    <?php $contact  = get_field('contact'); 
-          $contact_header = $contact['contact_header'];
-          $contact_text = $contact['contact_text'];
+    <?php $contact  = get_field('contact');
+    $contact_header = $contact['contact_header'];
+    $contact_text = $contact['contact_text'];
     ?>
 
     <section class="contact" id="contact">

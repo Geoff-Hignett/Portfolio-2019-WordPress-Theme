@@ -210,12 +210,14 @@ html {
     border: 2px solid #e2ecf0;
 }
 
-.portfolio__head {
+.portfolio__head,
+.slider__head {
     padding: 8rem 0;
     background-color: #e2ecf0;
 }
 
-.portfolio__content {
+.portfolio__content,
+.slider__content {
     padding: 4rem 0;
 }
 
@@ -697,4 +699,45 @@ html {
 
 .toggle .navigation__burger-line--3 {
     transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Slider Page */
+.slider__content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.slider__card-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+    border: 3px solid #000;
+    width: 30%;
+    height: 356px;
+}
+
+div .slider__card-wrapper {
+    width: 25%;
+}
+
+.slider__card-image img {
+    width: 100%;
+}
+
+.slider__card-text {
+}
+
+.slick-slide {
+    margin: 0 1rem;
+}
+
+.slick-list {
+    margin: 0 -1rem;
+}
+
+div .slick-next::before,
+div .slick-next::after,
+div .slick-prev::before,
+div .slick-prev::after {
+    color: #000;
 }
